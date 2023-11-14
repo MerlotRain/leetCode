@@ -54,21 +54,19 @@
 using namespace std;
 
 // @lc code=start
-class Solution
-{
+class Solution {
 public:
-    double findMedianSortedArrays(vector<int> &nums1, vector<int> &nums2)
-    {
-        if (nums1.empty() && nums2.empty())
-            return 0.0;
+  double findMedianSortedArrays(vector<int> &nums1, vector<int> &nums2) {
+    if (nums1.empty() && nums2.empty())
+      return 0.0;
 
-        std::vector<int> res;
-        res.insert(res.end(), nums1.begin(), nums1.end());
-        res.insert(res.end(), nums2.begin(), nums2.end());
-        std::sort(res.begin(), res.end());
+    std::vector<int> res;
+    res.insert(res.end(), nums1.begin(), nums1.end());
+    res.insert(res.end(), nums2.begin(), nums2.end());
+    std::sort(res.begin(), res.end());
 
-        int n = res.size();
-        return n % 2 == 1 ? res[n / 2] : (res[n / 2 - 1] + res[n / 2]) / 2.0;
-    }
+    int n = res.size();
+    return n % 2 == 1 ? res[n / 2] : (res[n / 2 - 1] + res[n / 2]) / 2.0;
+  }
 };
 // @lc code=end

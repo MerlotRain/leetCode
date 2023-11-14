@@ -53,32 +53,27 @@
  *
  */
 
-#include <string>
 #include <map>
+#include <string>
 using namespace std;
 
 // @lc code=start
-class Solution
-{
+class Solution {
 public:
-    int lengthOfLongestSubstring(string s)
-    {
-        std::map<char, int> m;
-        int lastRepeatPos = -1;
-        int max = 0;
-        for (int i = 0; i < s.size(); i++)
-        {
-            if (m.find(s[i]) != m.end() && lastRepeatPos < m[s[i]])
-            {
-                lastRepeatPos = m[s[i]];
-            }
-            if (i - lastRepeatPos > max)
-            {
-                max = i - lastRepeatPos;
-            }
-            m[s[i]] = i;
-        }
-        return max;
+  int lengthOfLongestSubstring(string s) {
+    std::map<char, int> m;
+    int lastRepeatPos = -1;
+    int max = 0;
+    for (int i = 0; i < s.size(); i++) {
+      if (m.find(s[i]) != m.end() && lastRepeatPos < m[s[i]]) {
+        lastRepeatPos = m[s[i]];
+      }
+      if (i - lastRepeatPos > max) {
+        max = i - lastRepeatPos;
+      }
+      m[s[i]] = i;
     }
+    return max;
+  }
 };
 // @lc code=end

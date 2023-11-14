@@ -47,55 +47,47 @@
 using namespace std;
 
 // @lc code=start
-class Solution
-{
+class Solution {
 public:
-    /**
-     *   d a b a b
-     * b 0 0 1 0 1
-     * a 0 1 0 2 0
-     * b 0 0 2 0 3
-     * a 0 1 0 3 0
-     * d 1 0 0 0 0
-     * i=1,j=1;
-     */
+  /**
+   *   d a b a b
+   * b 0 0 1 0 1
+   * a 0 1 0 2 0
+   * b 0 0 2 0 3
+   * a 0 1 0 3 0
+   * d 1 0 0 0 0
+   * i=1,j=1;
+   */
 
-    /// @brief babad dabab
-    /// @param s
-    /// @return
-    string longestPalindrome(string s)
-    {
-        int n = s.size(); // 5
-        if (n <= 1)
-            return s;
+  /// @brief babad dabab
+  /// @param s
+  /// @return
+  string longestPalindrome(string s) {
+    int n = s.size(); // 5
+    if (n <= 1)
+      return s;
 
-        int max = 0, end = 0;
-        vector<vector<int>> matrix(n, vector<int>(n));
-        for (int i = 0; i < n; i++)
-        { // b // d, a, b, d, b
-            //       0  1  2  3  4
-            for (int j = 0; j < n; j++)
-            {
-                if (s[i] == s[n - j - 1])
-                {
-                    if (i == 0 || j == 0)
-                        matrix[i][j] = 1;
-                    else
-                        matrix[i][j] = matrix[i - 1][j - 1] + 1;
-                }
-                else
-                {
-                    matrix[i][j] = 0;
-                }
-
-                if (matrix[i][j] > max)
-                {
-                    max = matrix[i][j];
-                    end = i;
-                }
-            }
+    int max = 0, end = 0;
+    vector<vector<int>> matrix(n, vector<int>(n));
+    for (int i = 0; i < n; i++) { // b // d, a, b, d, b
+      //       0  1  2  3  4
+      for (int j = 0; j < n; j++) {
+        if (s[i] == s[n - j - 1]) {
+          if (i == 0 || j == 0)
+            matrix[i][j] = 1;
+          else
+            matrix[i][j] = matrix[i - 1][j - 1] + 1;
+        } else {
+          matrix[i][j] = 0;
         }
-        return s.substr(end - max + 1, max);
+
+        if (matrix[i][j] > max) {
+          max = matrix[i][j];
+          end = i;
+        }
+      }
     }
+    return s.substr(end - max + 1, max);
+  }
 };
 // @lc code=end
