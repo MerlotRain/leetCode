@@ -70,9 +70,36 @@
  *
  */
 
+#include <string>
+
+using namespace std;
+
 // @lc code=start
 class Solution {
 public:
-  string convert(string s, int numRows) {}
+  string convert(string s, int numRows) {
+
+    if (numRows <= 1 || numRows >= s.size())
+      return s;
+    std::vector<std::string> r(numRows);
+
+    // 0,1,2...numRows-1,numRows-2...0,1,...
+    int row = 0;
+    int step = 1;
+    for (int i = 0; i < s.size(); i++) {
+      if (row == numRows - 1)
+        step = -1;
+      if (row == 0)
+        step = 1;
+      r[row] += s[i];
+      row += step;
+    }
+
+    std::string result;
+    for (int i = 0; i < numRows; i++) {
+      result += r.at(i);
+    }
+    return result;
+  }
 };
 // @lc code=end
