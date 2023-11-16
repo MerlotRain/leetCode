@@ -78,6 +78,12 @@ struct ListNode {
 };
 */
 
+/**
+ * @brief 单链表的核心问题在于，一定要清楚，一个node一定是只有一个next桌子很
+ * 所以绝对不会出现 'x' 形相交的情况，因为这样一定是某节点有两个next指针
+ * 
+ */
+
 class Solution {
 public:
   bool hasCycle(ListNode *head) {
