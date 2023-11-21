@@ -30,7 +30,7 @@
 
 */
 
-typedef int ElemType 
+typedef int ElemType; 
 
 typedef struct node{
 

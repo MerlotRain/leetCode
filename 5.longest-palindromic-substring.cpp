@@ -62,7 +62,7 @@ public:
   /// @brief babad dabab
   /// @param s
   /// @return
-  string longestPalindrome(string s) {
+  string longestPalindromeEx(string s) {
     int n = s.size(); // 5
     if (n <= 1)
       return s;
@@ -88,6 +88,47 @@ public:
       }
     }
     return s.substr(end - max + 1, max);
+  }
+
+  // abc
+  // #a#b#c#
+  string manacherString(string s) {
+    string str = "#";
+    for (int i = 0; i < s.size(); i++) {
+      str.push_back(s.at(i));
+      str.push_back('#');
+    }
+    return str;
+  }
+
+  string longestPalindrome(string s) {
+    if (s.length() == 0)
+      return string();
+
+    string str = manacherString(s);
+    std::vector<int> pArray(str.size());
+    int c = -1; // 回文中心点
+    int r = -1; // 回文右边界+1，实际的边界是r-1
+    int max = INT_MIN;
+    for (int i = 0; i < str.length(); i++) {
+      pArray[i] = r > i ? std::min(pArray[2 * c - r], r - i) : 1;
+      // 如果r <= i，说明要往外扩，不需要验证的范围就是1
+      // 如果r > i，说明不用往外扩展，不需要验证的范围 std::min(pArray[2 * c -
+      // r], r - i)
+
+      while (i + pArray[i] < str.length() && i - pArray[i] > -1) {
+        if (str[i - pArray[i]] == str[i + pArray[i]]) {
+          pArray[i]++;
+        } else {
+          break;
+        }
+      }
+      if (pArray[i] + i > r) {
+        r = i + pArray[i];
+        c = i;
+      }
+      max = std::max(max, pArray[i]);
+    }
   }
 };
 // @lc code=end
